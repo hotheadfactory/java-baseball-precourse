@@ -10,7 +10,7 @@ public class BaseballNumber {
         this.baseballNumber = baseballNumber;
     }
 
-    public boolean equals(BaseballNumber number) {
-        return this.baseballNumber == number.baseballNumber;
+    public boolean is(int value) {
+        return value == baseballNumber;
     }
 }
