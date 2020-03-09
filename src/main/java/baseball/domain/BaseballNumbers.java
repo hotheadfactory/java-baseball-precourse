@@ -1,9 +1,6 @@
 package baseball.domain;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class BaseballNumbers {
     public static final int SIZE = 3;
@@ -13,6 +10,9 @@ public class BaseballNumbers {
         Objects.requireNonNull(baseballNumbers);
         if (baseballNumbers.size() != SIZE) {
             throw new IllegalArgumentException("숫자 갯수가 올바르지 않습니다.");
+        }
+        if (baseballNumbers.size() != new HashSet<>(baseballNumbers).size()) {
+            throw new IllegalArgumentException("중복된 숫자가 있습니다.");
         }
         this.baseballNumbers = baseballNumbers;
     }

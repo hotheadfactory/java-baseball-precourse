@@ -28,6 +28,14 @@ public class BaseballNumbersTest {
         );
     }
 
+    static Stream<Arguments> duplicatedNumbers() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(BaseballNumberFactory.pick(1), BaseballNumberFactory.pick(2), BaseballNumberFactory.pick(2))),
+                Arguments.of(Arrays.asList(BaseballNumberFactory.pick(5), BaseballNumberFactory.pick(5), BaseballNumberFactory.pick(6))),
+                Arguments.of(Arrays.asList(BaseballNumberFactory.pick(7), BaseballNumberFactory.pick(8), BaseballNumberFactory.pick(7)))
+        );
+    }
+
     @ParameterizedTest
     @MethodSource("validBaseballNumbers")
     @DisplayName("정상적인 BaseballNumber 리스트가 들어올 경우")
@@ -45,5 +53,14 @@ public class BaseballNumbersTest {
         assertThatThrownBy(() -> new BaseballNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("숫자 갯수가");
+    }
+
+    @ParameterizedTest
+    @MethodSource("duplicatedNumbers")
+    @DisplayName("중복된 숫자가 들어간경우")
+    void duplicateNumbersTest(List<BaseballNumber> numbers) {
+        assertThatThrownBy(() -> new BaseballNumbers(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복된 숫자");
     }
 }
