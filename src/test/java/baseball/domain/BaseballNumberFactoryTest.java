@@ -23,5 +23,4 @@ public class BaseballNumberFactoryTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("올바르지 않은 숫자");
     }
-
 }
