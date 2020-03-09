@@ -1,6 +1,8 @@
 package baseball.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class BaseballNumbers {
@@ -15,7 +17,23 @@ public class BaseballNumbers {
         this.baseballNumbers = baseballNumbers;
     }
 
+    public Map<String, Integer> checkStrikeOrBall(BaseballNumbers numbers) {
+        Map<String, Integer> result = new HashMap<>();
+        result.put("Strike", 0);
+        result.put("Ball", 0);
+        for (int i = 0; i < SIZE; i++) {
+            if (this.baseballNumbers.get(i).equals(numbers.baseballNumbers.get(i))) {
+                result.put("Strike", result.get("Strike") + 1);
+                continue;
+            }
+            if (this.baseballNumbers.contains(numbers.baseballNumbers.get(i))) {
+                result.put("Ball", result.get("Ball") + 1);
+            }
+        }
+        return result;
+    }
+
     public boolean contains(BaseballNumber baseballNumber) {
-        return baseballNumbers.contains(baseballNumber);
+        return this.baseballNumbers.contains(baseballNumber);
     }
 }
