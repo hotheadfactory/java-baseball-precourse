@@ -12,8 +12,7 @@ public class BaseballNumberTest {
     @ValueSource(ints= {0, 9})
     @DisplayName("숫자가 잘 들어가는지 확인")
     void makeNumberTest(int value) {
-        assertThat(new BaseballNumber(value)
-                .equals(new BaseballNumber(value)))
+        assertThat(new BaseballNumber(value).is(value))
                 .isTrue();
     }
 
