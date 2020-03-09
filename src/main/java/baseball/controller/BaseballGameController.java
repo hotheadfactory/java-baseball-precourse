@@ -3,6 +3,7 @@ package baseball.controller;
 import baseball.domain.BaseballNumberFactory;
 import baseball.domain.BaseballNumbers;
 import baseball.view.InputView;
+import baseball.view.OutputView;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,9 +17,9 @@ public class BaseballGameController {
     private static void guessNumber(BaseballNumbers winningNumbers) {
         while (true) {
             Map<String, Integer> result = winningNumbers.checkStrikeOrBall(parseUserNumbers());
-            System.out.printf("%d스트라이크 %d볼\n\n", result.get("Strike"), result.get("Ball"));
+            OutputView.printResult(result);
             if (result.get("Strike") == 3) {
-                System.out.println("정답!");
+                OutputView.printCorrect();
                 break;
             }
         }
